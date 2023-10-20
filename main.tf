@@ -17,11 +17,32 @@ resource "aws_elasticache_cluster" "redis" {
   port                 = var.port
   security_group_ids   = var.security_group_ids
 
-  subnet_group_name = var.subnet_group_name
+  subnet_group_name = data.aws_subnet_ids.private
 
 
   tags = var.tags
 }
+
+data "aws_subnet_ids" "private" {
+  vpc_id = var.vpc_id  # Specify the VPC ID where your existing subnets are located
+
+  # You can add additional filters here, e.g., based on tags, availability zone, etc.
+    filter {
+      name   = "tag:Name"
+      values = ["${var.project}-*-${var.env}-private-*"]
+    }
+  }
+
+
+// locals {
+//   all_subnets = merge({
+//     "private"   = data.aws_subnet.private
+//     }
+//   )
+// }
+
+
+
 
 
 
