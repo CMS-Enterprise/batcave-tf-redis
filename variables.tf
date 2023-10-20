@@ -6,7 +6,7 @@ variable "project" {
   default = "eppe"
 }
 
-variable "vpc_id" {}
+// variable "vpc_id" {}
 
 variable "cluster_id" {
   default     = ""
@@ -48,10 +48,10 @@ variable "port" {
   type        = number
 }
 
-// variable "subnet_ids" {
-//   type    = list(string)
-//   default = []
-// }
+variable "subnet_ids" {
+  type    = list(string)
+  default = []
+}
 
 // variable "subnet_lookup_overrides" {
 //   description = "Some Subnets don't follow standard naming conventions.  Use this map to override the query used for looking up Subnets.  Ex: { private = \"foo-west-nonpublic-*\" }"
