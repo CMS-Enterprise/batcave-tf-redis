@@ -17,7 +17,7 @@ resource "aws_elasticache_cluster" "redis" {
   port                 = var.port
   security_group_ids   = var.security_group_ids
 
-  subnet_group_name = aws_elasticache_subnet_group.example.name
+  subnet_group_name = aws_subnet.example.name
 
 
   tags = var.tags
@@ -27,15 +27,12 @@ resource "aws_subnet" "example" {
   vpc_id     = var.vpc_id
   cidr_block = "10.202.196.0/23"
 
-  // tags = {
-  //   Name = "my-subnet"
-  // }
+  filter {
+    name   = "tag:Name"
+    values = ["${var.project}-*-${var.env}-private-a"]
+  }
 }
 
-resource "aws_elasticache_subnet_group" "example" {
-  name       = "my-cache-subnet"
-  subnet_ids = [aws_subnet.example.id]
-}
 
 
 // locals {
