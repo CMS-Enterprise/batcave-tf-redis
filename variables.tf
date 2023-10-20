@@ -42,8 +42,6 @@ variable "port" {
   type        = number
 }
 
-
-
 variable "subnet_group_name" {
   type    = list(string)
   default = []
