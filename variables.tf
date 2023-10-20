@@ -37,6 +37,11 @@ variable "parameter_group_name" {
   type        = string
 }
 
+variable "security_group_ids" {
+  type    = list(string)
+  default = []
+}
+
 variable "port" {
   default     = 6379
   type        = number
