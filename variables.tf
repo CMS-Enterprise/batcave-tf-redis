@@ -48,8 +48,8 @@ variable "port" {
 }
 
 variable "subnet_group_name" {
-  type    = list(string)
-  default = []
+  default     = ""
+  type        = string
 }
 
 variable "tags" {

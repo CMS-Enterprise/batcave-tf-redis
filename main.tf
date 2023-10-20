@@ -17,7 +17,8 @@ resource "aws_elasticache_cluster" "redis" {
   port                 = var.port
   security_group_ids   = var.security_group_ids
 
-  subnet_group_name = var.subnet_group_name
+  subnet_group_name = "eppe-east-dev-private-a"
+
 
   tags = var.tags
 }
