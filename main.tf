@@ -23,19 +23,18 @@ resource "aws_elasticache_cluster" "redis" {
   tags = var.tags
 }
 
-// data "aws_subnet_ids" "private" {
-//   vpc_id = var.vpc_id  # Specify the VPC ID where your existing subnets are located
+resource "aws_subnet" "example" {
+  vpc_id     = var.vpc_id
+  cidr_block = "10.202.196.0/23"
 
-//   # You can add additional filters here, e.g., based on tags, availability zone, etc.
-//     filter {
-//       name   = "tag:Name"
-//       values = ["${var.project}-*-${var.env}-private-*"]
-//     }
-//   }
+  // tags = {
+  //   Name = "my-subnet"
+  // }
+}
 
 resource "aws_elasticache_subnet_group" "example" {
   name       = "my-cache-subnet"
-  subnet_ids = [var.subnet_ids]
+  subnet_ids = [aws_subnet.example.id]
 }
 
 
