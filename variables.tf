@@ -6,10 +6,6 @@ variable "project" {
   default = "eppe"
 }
 
-variable "aws_region" {
-  default = "us-east-1"
-}
-
 
 variable "cluster_id" {
   default     = ""
@@ -47,10 +43,6 @@ variable "port" {
 }
 
 
-variable "subnet_group_name" {
-  default     = ""
-  type        = string
-}
 
 variable "subnet_group_name" {
   type    = list(string)
