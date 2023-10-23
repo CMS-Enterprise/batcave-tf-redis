@@ -23,15 +23,15 @@ resource "aws_elasticache_cluster" "redis" {
   tags = var.tags
 }
 
-resource "aws_subnet" "private" {
-  vpc_id     = var.vpc_id
-  cidr_block = "10.202.196.0/23"
-}
+// resource "aws_subnet" "private" {
+//   vpc_id     = var.vpc_id
+//   cidr_block = "10.202.196.0/23"
+// }
 
 
 resource "aws_elasticache_subnet_group" "example" {
   name       = "my-cache-subnet"
-  subnet_ids = [aws_subnet.private.id]
+  subnet_ids = [var.private.ids]
 }
 
 
