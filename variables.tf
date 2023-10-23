@@ -7,10 +7,6 @@ variable "project" {
 }
 
 
-variable "cluster_id" {
-  default     = ""
-  type        = string
-}
 
 variable "engine" {
   default     = ""

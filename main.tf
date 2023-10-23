@@ -8,7 +8,7 @@
 
 
 resource "aws_elasticache_cluster" "redis" {
-  cluster_id           = var.cluster_id 
+  cluster_id           = "${var.project}-redis-${var.env}"
   engine               = var.engine
   engine_version       = var.engine_version
   node_type            = var.node_type
