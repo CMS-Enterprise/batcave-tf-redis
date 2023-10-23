@@ -6,7 +6,6 @@ variable "project" {
   default = "eppe"
 }
 
-variable "vpc_id" {}
 
 variable "cluster_id" {
   default     = ""
