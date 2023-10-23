@@ -30,7 +30,7 @@ resource "aws_elasticache_cluster" "redis" {
 
 
 resource "aws_elasticache_subnet_group" "example" {
-  name       = "my-cache-subnet"
+  name       = "${var.project}-redis-${var.env}"
   subnet_ids = var.subnet_ids
 }
 
