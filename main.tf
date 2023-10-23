@@ -31,7 +31,7 @@ resource "aws_elasticache_cluster" "redis" {
 
 resource "aws_elasticache_subnet_group" "example" {
   name       = "my-cache-subnet"
-  subnet_ids = [var.private.ids]
+  subnet_ids = [var.subnet_ids]
 }
 
 
