@@ -48,8 +48,8 @@ variable "port" {
 }
 
 variable "subnet_ids" {
-  type    = list(string)
-  default = []
+  default     = ""
+  type        = string
 }
 
 // variable "subnet_lookup_overrides" {
