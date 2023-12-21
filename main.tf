@@ -8,7 +8,7 @@
 
 
 resource "aws_elasticache_cluster" "redis" {
-  cluster_id           = var.cluster_id 
+  cluster_id           = var.cluster_id
   engine               = var.engine
   engine_version       = var.engine_version
   node_type            = var.node_type
@@ -28,13 +28,6 @@ resource "aws_subnet" "private" {
   cidr_block = "10.202.196.0/23"
 }
 
-# private subnets
-data "aws_subnets" "private" {
-  filter {
-    name = "tag:Name"
-    values = [ "${var.project}-*-${var.env}-private-*"]
-  }
-}
 
 
 
@@ -44,11 +37,3 @@ data "aws_subnets" "private" {
 //     }
 //   )
 // }
-
-
-
-
-
-
-
-
