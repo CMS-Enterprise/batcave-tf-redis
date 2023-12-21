@@ -1,5 +1,6 @@
-
-variable "vpc_id" {}
+variable "vpc_id" {
+  type = string
+}
 
 variable "cluster_id" {
   default = ""
@@ -17,8 +18,8 @@ variable "engine_version" {
 }
 
 variable "node_type" {
-  default = ""
   type    = string
+  default = "cache.m4.large"
 }
 
 variable "num_cache_nodes" {
