@@ -54,3 +54,9 @@ variable "tags" {
     Owner = "Batcave"
   }
 }
+
+variable "snapshot_retention_limit" {
+  type        = number
+  default     = 7
+  description = "The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted."
+}
