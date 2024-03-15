@@ -1,62 +1,61 @@
-variable "vpc_id" {
-  type = string
-}
-
 variable "cluster_id" {
-  default = ""
-  type    = string
+  description = "The identifier for the Redis cluster"
+  type        = string
 }
 
-variable "engine" {
-  default = ""
-  type    = string
-}
-
-variable "engine_version" {
-  default = ""
-  type    = string
+variable "cluster_description" {
+  description = "The description for the Redis cluster"
+  type        = string
 }
 
 variable "node_type" {
-  type    = string
-  default = "cache.m4.large"
+  description = "The compute and memory capacity of the nodes in the node group"
+  type        = string
 }
 
 variable "num_cache_nodes" {
-  default = 1
-  type    = number
+  description = "The number of cache nodes in the cluster"
+  type        = number
 }
 
-variable "parameter_group_name" {
-  default = ""
-  type    = string
+variable "redis_secret_name" {
+  description = "The name of the AWS secret that will contain the redis token"
+  type        = string
 }
 
-variable "security_group_ids" {
-  type    = list(string)
-  default = []
+variable "param_group_name" {
+  description = "The name of the parameter group to associate with this cache cluster"
+  type        = string
+}
+
+variable "engine_version" {
+  description = "The version number of the cache engine to use for this cluster"
+  type        = string
 }
 
 variable "port" {
-  default = 6379
-  type    = number
+  description = "The port number on which each of the cache nodes will accept connections"
+  type        = number
 }
 
-// variable "subnet_lookup_overrides" {
-//   description = "Some Subnets don't follow standard naming conventions.  Use this map to override the query used for looking up Subnets.  Ex: { private = \"foo-west-nonpublic-*\" }"
-//   default     = {}
-//   type        = map(string)
-// }
+variable "subnet_group_name" {
+  description = "The name of the subnet group to be used for the cache cluster"
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "A list of subnet IDs to add to the generated subnet group"
+  type        = list(string)
+}
+
+variable "security_group_ids" {
+  description = "A list of security group IDs to associate with this cache cluster"
+  type        = list(string)
+}
 
 variable "tags" {
-  type = map(string)
-  default = {
-    Owner = "Batcave"
-  }
+  description = "A map of tags to add to all resources"
+  type        = map(string)
+  default     = {}
 }
 
-variable "snapshot_retention_limit" {
-  type        = number
-  default     = 7
-  description = "The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted."
-}

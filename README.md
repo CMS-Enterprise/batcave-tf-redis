@@ -19,29 +19,35 @@
 No modules.
 
 ## Resources
-
 | Name | Type |
 |------|------|
-| [aws_elasticache_cluster.redis](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster) | resource |
-| [aws_subnet.private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_secretsmanager_secret.redis_secret](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret) | resource |
+| [aws_secretsmanager_secret_version.redis_secret_version](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
+| [aws_elasticache_subnet_group.redis_subnet_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_subnet_group) | resource |
+| [aws_elasticache_replication_group.redis_replication_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cluster_id"></a> [cluster\_id](#input\_cluster\_id) | n/a | `string` | `""` | no |
-| <a name="input_engine"></a> [engine](#input\_engine) | n/a | `string` | `""` | no |
-| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | n/a | `string` | `""` | no |
-| <a name="input_node_type"></a> [node\_type](#input\_node\_type) | n/a | `string` | `"cache.m4.large"` | no |
-| <a name="input_num_cache_nodes"></a> [num\_cache\_nodes](#input\_num\_cache\_nodes) | n/a | `number` | `1` | no |
-| <a name="input_parameter_group_name"></a> [parameter\_group\_name](#input\_parameter\_group\_name) | n/a | `string` | `""` | no |
-| <a name="input_port"></a> [port](#input\_port) | n/a | `number` | `6379` | no |
-| <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | n/a | `list(string)` | `[]` | no |
-| <a name="input_snapshot_retention_limit"></a> [snapshot\_retention\_limit](#input\_snapshot\_retention\_limit) | The number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, then a snapshot that was taken today will be retained for 5 days before being deleted. | `number` | `7` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | <pre>{<br>  "Owner": "Batcave"<br>}</pre> | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
+| `cluster_id` | The identifier for the Redis cluster | `string` | n/a | yes |
+| `cluster_description` | The description for the Redis cluster | `string` | n/a | yes |
+| `node_type` | The compute and memory capacity of the nodes in the node group | `string` | n/a | yes |
+| `num_cache_nodes` | The number of cache nodes in the cluster | `number` | `1` | no |
+| `redis_secret_name` | The name of the AWS secret that will contain the Redis token | `string` | n/a | yes |
+| `param_group_name` | The name of the parameter group to associate with this cache cluster | `string` | n/a | yes |
+| `engine_version` | The version number of the cache engine to use for this cluster | `string` | n/a | yes |
+| `port` | The port number on which each of the cache nodes will accept connections | `number` | `6379` | no |
+| `subnet_group_name` | The name of the subnet group to be used for the cache cluster | `string` | n/a | yes |
+| `subnet_ids` | A list of subnet IDs to add to the generated subnet group | `list(string)` | n/a | yes |
+| `security_group_ids` | A list of security group IDs to associate with this cache cluster | `list(string)` | n/a | yes |
+| `tags` | A map of tags to add to all resources | `map(string)` | `{}` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| `redis_replication_group_id` | The Redis replication group ID. This ID is used to identify the replication group in various operations with AWS ElastiCache. |
+| `redis_replication_group_primary_endpoint` | The primary endpoint of the Redis replication group. This endpoint is used by applications to connect to the Redis cluster. |
+| `redis_replication_group_port` | The port number on which each of the cache nodes accepts connections. This port is used alongside the primary endpoint to establish a connection to the cluster. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
